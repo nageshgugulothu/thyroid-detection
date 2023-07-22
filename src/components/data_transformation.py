@@ -5,6 +5,7 @@ import numpy as np
 from dataclasses import dataclass
 
 # from src.logger import logging
+from src.logger import logging
 from src.exception import CustomException
 from src.utils import save_model
 
@@ -50,8 +51,7 @@ class DataTransformation:
             cat_pipeline=Pipeline(
                 steps=[
                 ('imputer',SimpleImputer(strategy='most_frequent')),
-                ('one_hot_encoder', OrdinalEncoder()),
-                ('scaler',StandardScaler())
+                ('one_hot_encoder', OneHotEncoder())
                 ]
 
             )
@@ -119,7 +119,6 @@ class DataTransformation:
             
         except Exception as e:
             logging.info("Exception occured in the initiate_datatransformation")
-
             raise CustomException(e,sys)
        
 if __name__=='__main__':
