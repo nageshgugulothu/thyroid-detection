@@ -9,6 +9,7 @@ from src.logger import logging
 from src.exception import CustomException
 
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
+from sklearn.preprocessing import LabelEncoder
 
 def save_model(file_path, obj):
     try:
@@ -44,24 +45,25 @@ def evaluate_model(file_path):
         raise CustomException(e, sys)
     
     
-def evaluate_model(X_train,y_train,X_test,y_test,models):
+def evaluate_model(X_train, y_train, X_test, y_test, models):
     try:
-        report = {}
-        for i in range(len(models)):
-            model = list(models.values())[i]
-            # Train model
-            model.fit(X_train,y_train)
+        model_report = {}
 
-            # Predict Testing data
-            y_test_pred =model.predict(X_test)
+        # Encode categorical target variable if present
+        label_encoder = LabelEncoder()
+        if isinstance(y_train[0], str):
+            y_train = label_encoder.fit_transform(y_train)
+            y_test = label_encoder.transform(y_test)
 
-            # Get R2 scores for train and test data
-            #train_model_score = r2_score(ytrain,y_train_pred)
-            test_model_score = r2_score(y_test,y_test_pred)
+        for model_name, model in models.items():
+            model.fit(X_train, y_train)
+            y_test_pred = model.predict(X_test)
 
-            report[list(models.keys())[i]] =  test_model_score
+            # Calculate R2 score
+            test_model_score = r2_score(y_test, y_test_pred)
+            model_report[model_name] = test_model_score
 
-        return report
+        return model_report
 
     except Exception as e:
         logging.info('Exception occured during model training')
