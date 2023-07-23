@@ -28,9 +28,9 @@ class DataTransformation:
         try:
             logging.info('Data Transformation initiated')
             # Define which columns should be ordinal-encoded and which should be scaled
-            categorical_cols = ['sex', 'on thyroxine', 'query on thyroxine',
-                               'on antithyroid medication', 'sick', 'pregnant', 'thyroid surgery',
-                               'I131 treatment', 'query hypothyroid', 'query hyperthyroid', 'lithium',
+            categorical_cols = ['sex', 'on_thyroxine', 'query_on_thyroxine',
+                               'on_antithyroid_medication', 'sick', 'pregnant', 'thyroid_surgery',
+                               'I131_treatment', 'query_hypothyroid', 'query_hyperthyroid', 'lithium',
                                'goitre', 'tumor', 'hypopituitary', 'psych']
 
             numerical_cols = ['age', 'TSH', 'T3', 'TT4', 'T4U', 'FTI']
