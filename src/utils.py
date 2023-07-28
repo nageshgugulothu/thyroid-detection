@@ -10,6 +10,7 @@ from src.exception import CustomException
 
 from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import OneHotEncoder
 
 def save_model(file_path, obj):
     try:
@@ -27,6 +28,7 @@ def load_model(file_path):
     try:
         with open(file_path,'rb') as file_obj:
             return pickle.load(file_obj)
+
     except Exception as e:
         logging.info('Exception Occured in load_object function utils')
         raise CustomException(e,sys)

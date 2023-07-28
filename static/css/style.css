@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #33001a;
+  }
+
+.top-left-link {
+        position: absolute;
+        top: 5px; /* Add some top margin */
+        left: 5px; /* Add some left margin */
+        padding: 10px; /* Add some padding */
+        background-color: #c9dc96; /* Add a background color */
+        border-radius: 5px; /* Add some rounded corners */
+        font-size: 14px; /* Increase the font size */
+        color: black; /* Change the font color */
+        text-decoration: none; /* Remove the underline */
+        font-weight: bold;
+  }
+
+.profile
+  {
+        float: left;
+        position: relative;
+        top: 30px;
+        left: 0px;
+        width: 170px; /* Adjust the width as per your image size */
+        height: 170px; /* Adjust the height as per your image size */
+        border-radius: 50%;
+        margin-right: 10px;
+        margin-bottom: 100px; /* Add margin at the bottom to move the image */
+       
+  }
+
+
+  .form-box {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color:#e0e0eb;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: black; 
+ 
+  }
+
+  h1 {
+    margin-bottom: 20px;
+    color: #ffff; /* Set the text color to a shade of blue (#336699) */
+    font-size: 28px; /* Increase the font size */
+    font-weight: bold; /* Add bold font weight */
+    text-indent: 240px; /* Add text-indent to move the text right */
+  }
+
+  h2 {
+    text-align: center;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  input[type="text"], select {
+    padding: 3px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+    width: 85%;
+
+  }
+
+  
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+  .form-group {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 20px;
+    width: 30%;
+  }
+  
+  .form-group label {
+    margin-bottom: 0px;
+    margin-top: 10px;
+
+  }

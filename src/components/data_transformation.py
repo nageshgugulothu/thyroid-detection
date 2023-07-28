@@ -12,7 +12,8 @@ from src.utils import save_model
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import OrdinalEncoder
 
 from src.components.data_ingestion import DataIngestion
 
@@ -51,7 +52,7 @@ class DataTransformation:
             cat_pipeline=Pipeline(
                 steps=[
                 ('imputer',SimpleImputer(strategy='most_frequent')),
-                ('one_hot_encoder', OneHotEncoder())
+                ('one_hot_encoder', OrdinalEncoder())
                 ]
 
             )

@@ -4,6 +4,7 @@ from src.exception import CustomException
 from src.logger import logging
 from src.utils import load_model
 import pandas as pd
+import numpy as np
 
 
 class PredictPipeline:
@@ -30,29 +31,7 @@ class PredictPipeline:
 
 
 class CustomData:
-    def __init__(self,
-                age:float, 
-                TSH:float, 
-                T3:float, 
-                TT4:float,
-                T4U:float, 
-                FTI:float,
-                sex:str,
-                on_thyroxine:str,
-                query_on_thyroxine:str,
-                on_antithyroid_medication:str,
-                sick:str,
-                pregnant:str,
-                thyroid_surgery:str,
-                I131_treatment:str, 
-                query_hypothyroid:str,
-                query_hyperthyroid:str,
-                lithium:str,
-                goitre:str,
-                tumor:str,
-                hypopituitary:str,
-                psych:str):
-
+    def __init__(self, age:float, TSH:float, T3:float, TT4:float, T4U:float, FTI:float, sex:str, on_thyroxine:str, query_on_thyroxine:str, on_antithyroid_medication:str, sick:str, pregnant:str, thyroid_surgery:str, I131_treatment:str, query_hypothyroid:str, query_hyperthyroid:str, lithium:str, goitre:str, tumor:str, hypopituitary:str, psych:str):
         self.age = age
         self.TSH = TSH
         self.T3 = T3
@@ -75,36 +54,41 @@ class CustomData:
         self.hypopituitary = hypopituitary
         self.psych = psych
 
+    def get_data_as_dataframe(self):
+        try:
+            custom_data_input_dict = {
+                'age': [self.age],
+                'TSH': [self.TSH],
+                'T3': [self.T3],
+                'TT4': [self.TT4],
+                'T4U': [self.T4U],
+                'FTI': [self.FTI],
+                'sex': [self.sex],
+                'on_thyroxine': [self.on_thyroxine],
+                'query_on_thyroxine': [self.query_on_thyroxine],
+                'on_antithyroid_medication': [self.on_antithyroid_medication],
+                'sick': [self.sick],
+                'pregnant': [self.pregnant],
+                'thyroid_surgery': [self.thyroid_surgery],
+                'I131_treatment': [self.I131_treatment],
+                'query_hypothyroid': [self.query_hypothyroid],
+                'query_hyperthyroid': [self.query_hyperthyroid],
+                'lithium': [self.lithium],
+                'goitre': [self.goitre],
+                'tumor': [self.tumor],
+                'hypopituitary': [self.hypopituitary],
+                'psych': [self.psych]
+            }
 
-def get_data_as_dataframe(self):
-    try:
-        custom_data_input_dict = {
-          'age':[self.age],
-          'TSH':[self.TSH],
-          'T3':[self.T3],
-          'TT4':[self.TT4],
-          'T4U':[self.T4U],
-          'FTI':[self.FTI],
-          'sex':[self.sex],
-          'on_thyroxine':[self.on_thyroxine],
-          'query_on_thyroxine':[self.query_on_thyroxine],
-          'on_antithyroid_medication':[self.on_antithyroid_medication],
-          'sick':[self.sick],
-          'pregnant':[self.pregnant],
-          'thyroid_surgery':[self.thyroid_surgery],
-          'I131_treatment':[self.I131_treatment],
-          'query_hypothyroid':[self.query_hypothyroid],
-          'query_hyperthyroid':[self.query_hyperthyroid],
-          'lithium':[self.lithium],
-          'goitre':[self.goitre],
-          'tumor':[self.tumor],
-          'hypopituitary':[self.hypopituitary],
-          'psych':[self.psych]
-        }
+            # Replace None with NaN
+            # for key, value in custom_data_input_dict.items():
+            #     if value is None:
+            #         custom_data_input_dict[key] = np.nan
 
-        df = pd.DataFrame(custom_data_input_dict)
-        logging.info('Dataframe Gathered')
-        return df
-    except Exception as e:
-        logging.info('Exception Occured in prediction pipeline')
-        raise CustomException(e,sys)
+            df = pd.DataFrame(custom_data_input_dict)
+            logging.info('Dataframe Gathered')
+            print(df)
+            return df
+        except Exception as e:
+            logging.info('Exception Occurred in prediction pipeline')
+            raise CustomException(e, sys)

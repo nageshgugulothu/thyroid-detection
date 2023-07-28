@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thyroid Disease Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <a href="https://github.com/nageshgugulothu/mlops_project" class="top-left-link" target="_blank">GitHub Repository Link</a>
+    <img src="{{url_for('static', filename='/images/nagesh_photo.jpg')}}" alt="Your Profile Picture" class="profile">
+
+    <h1>Thyroid Disease Detection - Nagesh</h1>
+    <div class="form-box">
+    <form action="{{url_for('predict')}}" method="POST">
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" placeholder="Enter value" required>
+        </div>
+
+        <div class="form-group">
+            <label for="TSH">TSH:</label>
+            <input type="number" id="TSH" name="TSH" placeholder="Enter value" required>
+        </div>
+
+        <div class="form-group">
+            <label for="T3">T3:</label>
+            <input type="number" id="T3" name="T3" placeholder="Enter value" required>
+        </div><br>
+
+        <div class="form-group">
+            <label for="TT4">TT4:</label>
+            <input type="number" id="TT4" name="TT4" placeholder="Enter value" required>
+        </div>
+
+        <div class="form-group">
+            <label for="T4U">T4U:</label>
+            <input type="number" id="T4U" name="T4U" placeholder="Enter value" required>
+        </div>
+
+        <div class="form-group">
+            <label for="FTI">FTI:</label>
+            <input type="number" id="FTI" name="FTI" placeholder="Enter value" required>
+        </div>
+
+        <div class="form-group">
+            <label for="sex">Sex:</label>
+            <select id="sex" name="cut">
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
+        </div>
+
+        <div class="form-group">
+            <label for="on_thyroxine">On Thyroxine:</label>
+            <select id="on_thyroxine" name="on_thyroxine">
+            <option value="t">True</option>
+            <option value="f">False</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="query_on_thyroxine">Query on Thyroxine:</label>
+            <select id="query_on_thyroxine" name="query_on_thyroxine">
+            <option value="t">True</option>
+            <option value="f">False</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="on_antithyroid_medication">On Antithyroid Medication:</label>
+            <select id="on_antithyroid_medication" name="on_antithyroid_medication">
+            <option value="t">True</option>
+            <option value="f">False</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="sick">Sick:</label>
+            <select id="sick" name="sick">
+            <option value="t">True</option>
+            <option value="f">False</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="pregnant">Pregnant:</label>
+            <select id="pregnant" name="pregnant">
+            <option value="t">True</option>
+            <option value="f">False</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="thyroid_surgery">Thyroid Surgery:</label>
+            <select id="thyroid_surgery" name="thyroid_surgery">
+            <option value="t">True</option>
+            <option value="f">False</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="I131_treatment">I131_Treatment:</label>
+            <select id="I131_treatment" name="I131_treatment">
+            <option value="t">True</option>
+            <option value="f">False</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="query_hypothyroid">Query Hypothyroid:</label>
+            <select id="query_hypothyroid" name="query_hypothyroid">
+            <option value="t">True</option>
+            <option value="f">False</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="query_hyperthyroid">Query Hyperthyroid:</label>
+            <select id="query_hyperthyroid" name="query_hyperthyroid">
+            <option value="t">True</option>
+            <option value="f">False</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="lithium">Lithium:</label>
+            <select id="lithium" name="lithium">
+            <option value="t">True</option>
+            <option value="f">False</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="goitre">Goitre:</label>
+            <select id="goitre" name="goitre">
+            <option value="t">True</option>
+            <option value="f">False</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="tumor">Tumor:</label>
+            <select id="tumor" name="tumor">
+            <option value="t">True</option>
+            <option value="f">False</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="hypopituitary">Hypopituitary:</label>
+            <select id="hypopituitary" name="hypopituitary">
+            <option value="t">True</option>
+            <option value="f">False</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="psych">Psych:</label>
+            <select id="psych" name="psych">
+            <option value="t">True</option>
+            <option value="f">False</option>
+            </select>
+        </div>
+
+        <div style="clear:both;"></div>
+        <input type="submit" value="Submit">
+        </form>
+        </div>
+
+        <h2>
+            Thyoid Disease Predicted is : {{ results }}
+        </h2>
+
+    </body>
+  </html>
