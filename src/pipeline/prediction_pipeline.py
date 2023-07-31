@@ -20,10 +20,11 @@ class PredictPipeline:
             model=load_model(model_path)
 
             data_scaled=preprocessor.transform(features)
-
             pred=model.predict(data_scaled)
-            return pred
-            
+
+            prediction_result = pred[0]
+
+            return prediction_result
 
         except Exception as e:
             logging.info("Exception occured in prediction")
@@ -81,9 +82,9 @@ class CustomData:
             }
 
             # Replace None with NaN
-            # for key, value in custom_data_input_dict.items():
-            #     if value is None:
-            #         custom_data_input_dict[key] = np.nan
+            for key, value in custom_data_input_dict.items():
+                  if value is None:
+                      custom_data_input_dict[key] = np.nan
 
             df = pd.DataFrame(custom_data_input_dict)
             logging.info('Dataframe Gathered')

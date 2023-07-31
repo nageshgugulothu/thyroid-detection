@@ -13,7 +13,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
-from sklearn.preprocessing import OrdinalEncoder
+from sklearn.preprocessing import OneHotEncoder
 
 from src.components.data_ingestion import DataIngestion
 
@@ -52,7 +52,7 @@ class DataTransformation:
             cat_pipeline=Pipeline(
                 steps=[
                 ('imputer',SimpleImputer(strategy='most_frequent')),
-                ('one_hot_encoder', OrdinalEncoder())
+                ('one_hot_encoder', OneHotEncoder(handle_unknown='ignore'))
                 ]
 
             )

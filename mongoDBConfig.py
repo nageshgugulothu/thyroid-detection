@@ -1,16 +1,5 @@
-from flask import Flask, request, render_template, jsonify, session
-from src.pipeline.prediction_pipeline import PredictPipeline, CustomData
-import pandas as pd
-from src.logger import logging
-from src.exception import CustomException
-import sys 
 
-app = Flask(__name__)
-
-@app.route('/')
-def home_page():
-    return render_template('index.html')
-
+from pymongo import MongoClient
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
@@ -19,7 +8,7 @@ def predict():
     else:
         try:
             data = CustomData(
-                age=float(request.form.get('age')),
+                 age=float(request.form.get('age')),
                 TSH=float(request.form.get('TSH')),
                 T3=float(request.form.get('T3')),
                 TT4=float(request.form.get('TT4')),
@@ -42,17 +31,16 @@ def predict():
                 psych=request.form.get('psych')
             )
 
-            pred_df = data.get_data_as_dataframe()
+            # Connect to MongoDB and retrieve data
+            client = MongoClient("<YOUR_MONGODB_URI>")
+            db = client["your_database_name"]
+            collection = db["your_collection_name"]
+            data_from_mongo = collection.find()
 
-            predict_pipeline = PredictPipeline()
-            pred = predict_pipeline.predict(pred_df)
+            # Process the data from MongoDB as needed
+            # For example, you can convert it to a DataFrame
+            df = pd.DataFrame(data_from_mongo)
 
-            result_color = 'blue' if pred == 'hypothyroid' else 'yellow'
-
-            return render_template('index.html', pred=pred, pred_df=pred_df, result_color=result_color)
 
         except Exception as e:
-            raise CustomException(e,sys)
-
-if __name__ == '__main__':
-    app.run(host="0.0.0.0", debug=True)
+            raise CustomException(e, sys)

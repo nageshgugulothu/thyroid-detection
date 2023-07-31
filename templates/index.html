@@ -6,6 +6,7 @@
 </head>
 
 <body>
+
     <a href="https://github.com/nageshgugulothu/mlops_project" class="top-left-link" target="_blank">GitHub Repository Link</a>
     <img src="{{url_for('static', filename='/images/nagesh_photo.jpg')}}" alt="Your Profile Picture" class="profile">
 
@@ -163,13 +164,15 @@
         </div>
 
         <div style="clear:both;"></div>
-        <input type="submit" value="Submit">
+        <input type="submit" value="submit"> 
         </form>
-        </div>
+    </div>
 
-        <h2>
-            Thyoid Disease Predicted is : {{ results }}
-        </h2>
+    {% if pred %}
+    <h2>Prediction Result is : <span id="result" style="color: {% if pred == 'negative' %}yellow{% else %}red{% endif %}">{{ pred }}</span></h2>
+    {% endif %}
 
     </body>
+    <font face="bold" color="yellow" size="2"><marquee scrollamount="" >
+    <h5>Prediction of Thyroid Disease using machine learning models </h5></marquee></font>
   </html>
