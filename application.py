@@ -3,7 +3,8 @@ from src.pipeline.prediction_pipeline import PredictPipeline, CustomData
 import pandas as pd
 from src.logger import logging
 from src.exception import CustomException
-import sys 
+import sys
+
 
 app = Flask(__name__)
 
